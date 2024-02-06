@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const username = process.env.DATABASE_USERNAME;
 const password = process.env.DATABASE_PASSWORD;
 const url = process.env.DATABASE_URL.replace('{{DATABASE_USERNAME}}', username).replace('{{DATABASE_PASSWORD}}', password);
+
 mongoose.connect(url)
 .then(() =>{
     console.log('Connected to the Database.');
