@@ -8,7 +8,7 @@ const password = process.env.DATABASE_PASSWORD;
 const url = process.env.DATABASE_URL.replace('{{DATABASE_USERNAME}}', username).replace('{{DATABASE_PASSWORD}}', password);
 mongoose.connect(url)
 .then(() =>{
-    console.log('Connected to the DB.');
+    console.log('Connected to the Database.');
 })
 .catch((error) => {
     console.error('Error connecting to the MongoDB:', error);
