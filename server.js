@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const port = process.env.PORT || 8080;
 
 const username = process.env.DATABASE_USERNAME;
 const password = process.env.DATABASE_PASSWORD;
@@ -17,7 +18,7 @@ mongoose.connect(url)
 
 app.use(express.json());
 
-const sheltersRouter = require('./routes/shelters');
+const sheltersRouter = require('./routers/shelters');
 app.use('/shelters', sheltersRouter);
 
-app.listen(3000, () => console.log(`Server has started`));
+app.listen(port, () => console.log(`Server has started listening on port ${port}`));

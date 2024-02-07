@@ -4,7 +4,7 @@ const Shelter = require('../models/shelter');
 
 module.exports = router;
 
-//Getting all shelters
+/* Getting all shelters http://localhost:3000/shelters/getAllShelters */
 router.get('/getAllShelters', async (req, res) => {
     try{
         const shelters = await Shelter.find();
@@ -14,12 +14,12 @@ router.get('/getAllShelters', async (req, res) => {
     }
 })
 
-//Getting one shelter
+/* Getting one shelter by ID http://localhost:3000/shelters/getShelter/:id */
 router.get('/getShelter/:id', getShelter, (req, res) => {
     res.send(req.shelter);
 })
 
-//Creating a shelter
+/* Creating a shelter http://localhost:3000/shelters/createShelter */
 router.post('/createShelter', async (req, res) => {
     try {
         const shelters = req.body; // Getting all Data to shelters
@@ -33,6 +33,8 @@ router.post('/createShelter', async (req, res) => {
     }
 
 })
+
+/* Deleting a shelter by ID http://localhost:3000/shelters/deleteShelter/:id */
 router.delete('/deleteShelter/:id', getShelter, async (req, res) => {
     try {
         if (!req.shelter) {
@@ -47,7 +49,23 @@ router.delete('/deleteShelter/:id', getShelter, async (req, res) => {
     }
 })
 
-async function getShelter(req, res, next) { // Middleware function
+/* Updating a shelter by ID - http://localhost:3000/shelters/updateShelter/:id */
+router.put('/updateShelter/:id', async (req, res) => {
+  try{
+    await Shelter.findByIdAndUpdate(req.params.id, {
+        Name: req.body.Name,
+        Location: req.body.Location,
+        Capacity: req.body.Capacity
+    });
+
+    res.send('Shelter Updated!');
+  } catch (err){
+    res.status(500).json({ message: err.message});
+  }
+})
+
+/* Middleware function */
+async function getShelter(req, res, next) { 
     try {
         const shelter = await Shelter.findById(req.params.id);
 
