@@ -1,5 +1,4 @@
 const test = require('supertest');
-const sheltersController = require('../controllers/sheltersController');
 const app = require('../server'); 
 
 describe("Shelters Methods: ", () => {
@@ -57,7 +56,7 @@ describe("Shelters Methods: ", () => {
     it('should return a 400 error with invalid input data', async () => {
         const shelterId = '65c4ed735b1bb7a6e5271f59';
         const invalidData = {
-            // Invalid data without any fields to update
+            /* Invaild data implementing */
         };
 
         const response = await test(app)
