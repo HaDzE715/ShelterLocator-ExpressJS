@@ -24,26 +24,25 @@ exports.getShelterById = async (req, res) => {
 
 /* Creating a shelter || Array of shelters */
 exports.createShelter = async (req, res) => {
-
     const shelters = req.body;
 
     try {
-        /* Situation to handle single object */
         if (!Array.isArray(shelters)) { 
             const shelter = new Shelter(shelters);
-            res.status(200).json({message : "A shelter have been added!"});
-            return await shelter.save();
+            await shelter.save();
+            res.status(200).json({ message: "A Shelter have been added!" });
+        } else {
+            const createdShelters = await Promise.all(shelters.map(async shelterData => {
+                const shelter = new Shelter(shelterData);
+                return await shelter.save();
+            }));
+            res.status(200).json({ message: 'All Shelters have been saved successfully!' });
         }
-        /* Handling array of objects */
-        const createdShelters = await Promise.all(shelters.map(async shelterData => {
-            const shelter = new Shelter(shelterData);
-            return await shelter.save();
-        }));
-        res.status(200).json({message: 'All Shelters have been saved successfully!'});
     } catch(err) {
-        res.status(500).json({message: err.message});
+        res.status(500).json({ message: err.message });
     }
 };
+
 
 /* Updating shelter using ID, can update single parameters in the object */
 exports.updateShelter = async (req, res) => {

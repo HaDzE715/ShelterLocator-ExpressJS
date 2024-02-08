@@ -22,3 +22,5 @@ app.use(express.json());
 app.use('/shelters', sheltersRouter);
 
 app.listen(port, () => console.log(`Server has started listening on port ${port}`));
+
+module.exports = app;
