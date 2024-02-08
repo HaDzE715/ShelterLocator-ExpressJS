@@ -16,4 +16,4 @@ const shelterSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('Shelter', shelterSchema, 'shelters'); /*'shelters' is defining the collection name*/ 
+module.exports = mongoose.model('Shelter', shelterSchema, 'shelters'); /* 'shelters' is defining the collection name */ 

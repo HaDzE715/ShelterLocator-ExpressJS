@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const port = process.env.PORT || 8080;
+const sheltersRouter = require('./routes/sheltersRoute');
 
 const username = process.env.DATABASE_USERNAME;
 const password = process.env.DATABASE_PASSWORD;
@@ -18,7 +19,6 @@ mongoose.connect(url)
 
 app.use(express.json());
 
-const sheltersRouter = require('./routers/shelters');
 app.use('/shelters', sheltersRouter);
 
 app.listen(port, () => console.log(`Server has started listening on port ${port}`));

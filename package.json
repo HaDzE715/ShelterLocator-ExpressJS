@@ -6,7 +6,7 @@
   "scripts": {
     "devStart": "nodemon server.js"
   },
-  "author": "",
+  "author": "Hade Bayaa",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
