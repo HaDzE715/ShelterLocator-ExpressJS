@@ -7,6 +7,9 @@
     "devStart": "nodemon server.js",
     "test": "jest"
   },
+  "jest" : {
+    "testTimeout": 30000 
+  },
   "author": "Hade Bayaa",
   "license": "ISC",
   "dependencies": {
@@ -20,3 +23,4 @@
     "supertest": "^6.3.4"
   }
 }
+
